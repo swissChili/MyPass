@@ -43,7 +43,7 @@ namespace MyPass
 
 			for (int j = 0; j < what.Length; j++)
 			{
-                buffer = "";
+				buffer = "";
 				// skip ws
 				if (Char.IsWhiteSpace(what[j]))
 				{
@@ -52,29 +52,29 @@ namespace MyPass
 						j++;
 					}
 				}
-                if (j < what.Length && what[j] == '"')
-                {
-                    int escapeStart = j;
-                    j++;
-                    while (j < what.Length && what[j] != '"')
-                    {
-                        buffer += what[j++];
-                    }
-                    if (j >= what.Length || what[j] != '"')
-                    {
-                        throw new ParseError(what, "Expected a closing quote",
-                            escapeStart, j - escapeStart);
-                    }
-                    res.Add(buffer);
-                }
-                else
-                {
-                    while (j < what.Length && !Char.IsWhiteSpace(what[j]))
-                    {
-                        buffer += what[j++];
-                    }
-                    res.Add(buffer);
-                }
+				if (j < what.Length && what[j] == '"')
+				{
+					int escapeStart = j;
+					j++;
+					while (j < what.Length && what[j] != '"')
+					{
+						buffer += what[j++];
+					}
+					if (j >= what.Length || what[j] != '"')
+					{
+						throw new ParseError(what, "Expected a closing quote",
+							escapeStart, j - escapeStart);
+					}
+					res.Add(buffer);
+				}
+				else
+				{
+					while (j < what.Length && !Char.IsWhiteSpace(what[j]))
+					{
+						buffer += what[j++];
+					}
+					res.Add(buffer);
+				}
 			}
 
 			return res;

@@ -59,17 +59,17 @@ namespace MyPass
 						{
 							cmds.Add(new AddCommand(p));
 						}
-                        else if (command.StartsWith("find"))
-                        {
-                            cmds.Add(new FindCommand(p));
-                        }
-                        else if (command.StartsWith("rm"))
-                        {
-                            cmds.Add(new RemoveCommand(p));
-                        }
+						else if (command.StartsWith("find"))
+						{
+							cmds.Add(new FindCommand(p));
+						}
+						else if (command.StartsWith("rm"))
+						{
+							cmds.Add(new RemoveCommand(p));
+						}
 						else if (new string[]{
-                                "username", "password",
-                                "for", "notes", "tags"
+								"username", "password",
+								"for", "notes", "tags"
 							}.Contains(command))
 						{
 							cmds.Add(new GetCommand(command));

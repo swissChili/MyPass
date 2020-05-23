@@ -287,13 +287,13 @@ namespace MyPass
 			}
 		}
 
-        protected bool DoesMatch(Login i)
-        {
-            return (Username != null ? (i.Username == Username) : true)
+		protected bool DoesMatch(Login i)
+		{
+			return (Username != null ? (i.Username == Username) : true)
 					&& (For != null ? (i.For == For) : true)
 					&& (Tags != null ? (i.Tags.Aggregate(true, (a, x) =>
 						a && i.Tags.Contains(x))) : true);
-        }
+		}
 
 		protected List<Login> FindMatches(List<Login> input)
 		{
@@ -315,15 +315,15 @@ namespace MyPass
 			: base(args)
 		{ }
 
-        public override List<Login> Execute(List<Login> input)
+		public override List<Login> Execute(List<Login> input)
 		{
-            Console.WriteLine(
-                $"Are you sure you want to remove these items?");
-            if (ReadLine.Read("(y/N)> ") == "y")
-            {
-                input.RemoveAll(DoesMatch);
-            }
-            return input;
+			Console.WriteLine(
+				$"Are you sure you want to remove these items?");
+			if (ReadLine.Read("(y/N)> ") == "y")
+			{
+				input.RemoveAll(DoesMatch);
+			}
+			return input;
 		}
 	}
 }

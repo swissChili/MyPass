@@ -12,10 +12,10 @@ namespace MyPass
 		private string Password;
 		private string FileName;
 
-        public MyPassCli()
-        {
-            Logins = new List<Login>();
-        }
+		public MyPassCli()
+		{
+			Logins = new List<Login>();
+		}
 
 		private XDocument ToXml()
 		{
@@ -38,32 +38,32 @@ namespace MyPass
 					}
 					else if (cmd is IOCommand io)
 					{
-                        if (Password == null)
-                        {
-                            Error.Write("Password not set, try " +
-                                "'set-password'");
-                            continue;
-                        }
-                        if (io.File != null)
+						if (Password == null)
+						{
+							Error.Write("Password not set, try " +
+								"'set-password'");
+							continue;
+						}
+						if (io.File != null)
 							FileName = io.File;
-                        else
-                            io.File = FileName;
+						else
+							io.File = FileName;
 
-                        // Needed for encryption and decryption
-                        io.Password = Password;
+						// Needed for encryption and decryption
+						io.Password = Password;
 
-                        if (FileName == null)
+						if (FileName == null)
 						{
 							Error.Write("No file name set, try " +
-                                "'save <file>' or 'open <file>'");
+								"'save <file>' or 'open <file>'");
 						}
-                        
+
 						input = cmd.Execute(input);
 						Logins = input;
 					}
 					else if (cmd is SetPasswordCommand pass)
 					{
-                        pass.Execute(input);
+						pass.Execute(input);
 						Password = pass.Password;
 					}
 					else

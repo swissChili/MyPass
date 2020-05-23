@@ -13,14 +13,14 @@ namespace MyPass
 		public string Password;
 		public string Notes;
 
-        public Login()
-        {
-            For = "";
-            Tags = new List<string>();
-            Username = "";
-            Password = "";
-            Notes = "";
-        }
+		public Login()
+		{
+			For = "";
+			Tags = new List<string>();
+			Username = "";
+			Password = "";
+			Notes = "";
+		}
 
 		public XElement ToXml()
 		{
@@ -51,7 +51,7 @@ namespace MyPass
 		public Login(XElement xml)
 		{
 			For = xml.Descendants("For").First().Value;
-            Tags = new List<string>(
+			Tags = new List<string>(
 				from t in xml.Descendants("Tag")
 				select (t.FirstNode as XText).Value);
 			Username = xml.Descendants("Username").First().Value;
@@ -59,21 +59,21 @@ namespace MyPass
 			Notes = xml.Descendants("Notes").First().Value;
 		}
 
-        public static IEnumerable<Login> FromXDocument(XDocument doc)
-        {
-            return from login in doc.Root.Descendants("Login")
-                     select new Login(login);
-        }
+		public static IEnumerable<Login> FromXDocument(XDocument doc)
+		{
+			return from login in doc.Root.Descendants("Login")
+				   select new Login(login);
+		}
 
-        public static XDocument LoginsToXDocument(IEnumerable<Login> logins)
-        {
-            var d = new XDocument(
+		public static XDocument LoginsToXDocument(IEnumerable<Login> logins)
+		{
+			var d = new XDocument(
 				new XElement("Logins",
 					from l in logins
 					select l.ToXml()));
 			d.Declaration = new XDeclaration("1.0", "utf-8", "true");
 
 			return d;
-        }
+		}
 	}
 }
